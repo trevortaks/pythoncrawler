@@ -1,9 +1,9 @@
 import urllib2
-from bs4 import BeautifulSoup
 import sqlite3
-#import os
 
-home = ['http://localhost/myweb/personal/',]
+from bs4 import BeautifulSoup
+
+home = ['http://thenewboston.com', ]
 other = []
 
 def getImage(url):
@@ -20,7 +20,7 @@ def getUrl(url):
 	outfile = open('urls.txt','a+')
 	try:
 		data = urllib2.urlopen(url)
-		soup = BeautifulSoup(data)
+		soup = BeautifulSoup(data, "html.parser")
 		for link in soup.find_all('a'):
 			href = link.get('href')
 			if href == None:
